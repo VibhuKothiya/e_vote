@@ -1,7 +1,7 @@
 import React, {  useState } from 'react'
 import { useDispatch } from 'react-redux'
 
-import logo from '../IMG/LOTUS.jpeg'
+// import logo from '../IMG/LOTUS.jpeg'
 import { SubmitPartyData } from '../redux-thunk/User/action/Partyaction'
 
 const PartyModal = () => {
@@ -9,7 +9,7 @@ const PartyModal = () => {
 
     const [formData, setFormData] = useState({
         party_name: '',
-        party_logo: logo,
+        party_logo: '',
         short_code: ''
     })
 
@@ -27,7 +27,7 @@ const PartyModal = () => {
   
 
     const PartySubmit = (e) => {
-        console.log(formData, "party submitt");
+        // console.log(formData, "party submitt");
         e.preventDefault();
     const data = new FormData();
     data.append('party_name', formData.party_name);

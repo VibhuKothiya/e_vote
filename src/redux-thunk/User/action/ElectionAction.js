@@ -63,7 +63,7 @@ export const DeleteElection = (_id) => {
 
         try{
             let res = await axios.delete(`http://13.127.211.205:8000/v1/election/delete/${_id}`)
-           console.log(res,"delete ELECTION");
+        //    console.log(res,"delete ELECTION");
         dispatch({
             type: ELECTION_DELETE_SUCCESS,
             payload: _id

@@ -11,7 +11,7 @@ export const getPartyData = () => {
 
         try{
             let res = await axios.get('http://13.127.211.205:8000/v1/party/list')
-           console.log(res.data.data, "action");
+        //    console.log(res.data.data, "action");
         dispatch({
             type: PARTY_GET_SUCCESS,
             payload: res.data.data
@@ -64,7 +64,7 @@ export const DeleteParty = (_id) => {
 
         try{
             let res = await axios.delete(`http://13.127.211.205:8000/v1/party/delete/${_id}`)
-           console.log(res,"delete party");
+        //    console.log(res,"delete party");
         dispatch({
             type: PARTY_DELETE_SUCCESS,
             payload: _id

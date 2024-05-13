@@ -7,7 +7,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { useDispatch, useSelector } from 'react-redux';
-import { DeleteUser, loginAdmin } from '../redux-thunk/User/action/userAction';
+import { DeleteUser, UserDataList } from '../redux-thunk/User/action/userAction';
 import Modal from './Modal';
 
 
@@ -15,17 +15,16 @@ import Modal from './Modal';
 const UserTable = () => {
   const dispatch = useDispatch()
   const { userData } = useSelector((state) => state.UserList)
-
-  
+ 
 
   useEffect(() => {
-    dispatch(loginAdmin())
+    dispatch(UserDataList())
   }, [])
 
   const deleteData = (_id) => {
    
     dispatch(DeleteUser(_id));
-    dispatch(loginAdmin())
+    dispatch(UserDataList())
   }
 
   return (

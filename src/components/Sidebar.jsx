@@ -11,7 +11,7 @@ const Sidebar = () => {
                         </div>
                         <ul class="navbar-nav flex-column ps-2">
                             <li class="nav-item">
-                                <Link to='/Deshboard' class="nav-link active" style={{ color: '#0E9F6E' }}>
+                                <Link to='/Dashboard' class="nav-link active" style={{ color: '#0E9F6E' }}>
                                     <i class="fa-solid fa-dashboard fs-5"></i>
                                     <span class="ms-2 fw-bold">Dashboard</span>
                                 </Link>

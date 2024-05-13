@@ -15,7 +15,7 @@ import { DeleteParty, getPartyData } from '../redux-thunk/User/action/Partyactio
 
 const PartyTable = () => {
   const { partyData} = useSelector((state)=>state.PartyList);
-  console.log(partyData, "partyyydataaa");
+  // console.log(partyData, "partyyydataaa");
  
   const dispatch = useDispatch()
 

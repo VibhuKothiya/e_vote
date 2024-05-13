@@ -1,41 +1,40 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
-import { loginAdmin } from '../redux-thunk/User/action/userAction';
-import { adminLoginDataSubmit } from '../redux-thunk/Admin/action/adminAction';
-import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { userLoginDataSubmit } from '../User/action/userAction';
+import { Navigate, useNavigate } from 'react-router-dom';
 
-const Home = () => {
-    const navigate = useNavigate()
-    const [AdminLoginData, setLoginData] = useState({});
-   const { isAdminLogin } = useSelector((state) => state.admin)
+const UserLoginForm = () => {
+    const [UserloginData, setLoginData] = useState({});
+   const { isUserLogin } = useSelector((state) => state.UserList)
     const dispatch = useDispatch();
+    const navigate = useNavigate()
 
     const inputHandle = (e) => {
-        setLoginData({...AdminLoginData, [e.target.name] : e.target.value})
+        setLoginData({...UserloginData, [e.target.name] : e.target.value})
+        
+    }
+        console.log(UserloginData, "User Login Data");
+    //  const submitLoginData = () => {
+    //     dispatch(userLoginDataSubmit(UserloginData))
+    // }
+
+    const submitForm = (e) =>{
+        e.preventDefault()
+        dispatch(userLoginDataSubmit(UserloginData))
     }
 
-
-
-     const submitLoginData = () => {
-        dispatch(adminLoginDataSubmit(AdminLoginData))
-        // navigate("/DashBoard") 
+    const adminLoginPage = () => {
+        Navigate('/Home')
     }
 
-    const formSubmit = (e) =>{
-        e.preventDefault();
-    }
-  
     useEffect(() => {
-        console.log(isAdminLogin, "isAdminLogin");
-        if (isAdminLogin) {
-            navigate("/DashBoard")
+        if (isUserLogin) {
+            navigate ("/Voter")
         }
-    }, [isAdminLogin])
-    
+    }, [isUserLogin])
 
-    return (
-        <div>
+  return (
+    <div>
             <div className="row">
                 <div className="col-6 d-flex justify-content-center align-items-center" style={{ backgroundColor: "#1a257e", height: '100vh' }}>
                     <svg width="200" height="100" viewBox="0 0 272 201" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -56,20 +55,20 @@ const Home = () => {
                 </div>
                 <div className="col-6 d-flex justify-content-center align-items-center">
                     <div className="form" style={{width : '350px'}}>
-                        <form className='border rounded-4 p-3' onSubmit={formSubmit}>
-                            <h2 className='mb-4'>Login</h2>
+                        <form onSubmit={(e) => submitForm(e)} className='border rounded-4 p-3'>
+                            <h3 className='mb-4'>Login with Voter Card No.</h3>
                             
-                            <label className='mb-2 d-flex justify-content-start'>User Name</label><input name='name' onChange={inputHandle } placeholder='Enter Name' className='mb-2 p-1 rounded d-flex justify-content-start' type='text' style={{width: '320px'}}></input>
-                            <label className='mb-2 d-flex justify-content-start'>Password:</label><input name='password' onChange={inputHandle } placeholder='Enter password' className='mb-3 p-1 rounded d-flex justify-content-start' type='password' style={{width: '320px'}}></input>
-                           <button onClick={submitLoginData} className='rounded text-white ps-5 pe-5 mb-3 mt-4' style={{ backgroundColor: "#1a257e", width : '320px', textAlign: 'center' }}>Submit</button>
-                          <Link to="/UserLoginForm"><button className='rounded text-white ps-5 pe-5 mb-3 mt-4' style={{ backgroundColor: "#1a257e", width : '320px', textAlign: 'center' }}>Login as User</button></Link> 
-
+                            <label className='mb-2 d-flex justify-content-start' >Vote Card Number</label><input onChange={inputHandle } name='cardNo' placeholder='Enter Name' className='mb-2 p-1 rounded d-flex justify-content-start' type='text' style={{width: '320px'}}></input>
+                            <label className='mb-2 d-flex justify-content-start'>Password:</label><input onChange={inputHandle } name='password' placeholder='Enter password' className='mb-3 p-1 rounded d-flex justify-content-start' type='password' style={{width: '320px'}}></input>
+                           <button  className='rounded text-white ps-5 pe-5 mb-3 mt-4' style={{ backgroundColor: "#1a257e", width : '320px', textAlign: 'center' }}>Submit</button>
+                           <button onClick={adminLoginPage} className='rounded text-white ps-5 pe-5 mb-3 mt-4' style={{ backgroundColor: "#1a257e", width : '320px', textAlign: 'center' }}>Login as Admin</button>
+                            
                         </form>
                     </div>
                 </div>
             </div>
         </div>
-    )
+  )
 }
 
-export default Home;
+export default UserLoginForm

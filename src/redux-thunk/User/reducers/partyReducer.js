@@ -22,7 +22,7 @@ export const partyReducer = (state = initialstate, action) => {
             };
 
         case PARTY_POST_SUCCESS:
-            console.log(action.payload, "partyy Add");
+            // console.log(action.payload, "partyy Add");
             return {
                 ...state,
                 isLoading: false,
