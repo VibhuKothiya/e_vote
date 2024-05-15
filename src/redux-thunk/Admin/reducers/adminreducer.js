@@ -15,7 +15,7 @@ export const AdminReducer = (state = initialState, action) => {
         case ADMIN_LOGIN_POST_SUCCESS:
            
             return {
-                
+                ...state,
                 isAdminLogin: true
                                                     
 
@@ -24,7 +24,7 @@ export const AdminReducer = (state = initialState, action) => {
         case ADMIN_LOGOUT_POST_SUCCESS:
            
             return {
-                
+                ...state,
                 isAdminLogin: false
                                                     
 

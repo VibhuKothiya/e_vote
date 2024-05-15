@@ -48,7 +48,7 @@ const VoterTable = () => {
     }
 
     function logout() {
-        // console.log("logouuy");
+        console.log("logouuy");
         // localStorage.removeItem("userLoginData")
         dispatch({
             type: USER_LOGOUT,

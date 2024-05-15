@@ -24,6 +24,7 @@ function App() {
         <Route path='/user' exect element={<User/>}/>
         <Route path='/election' exect element={<Election/>}/>
         <Route path='/Voter' exect element={<Voter />}/>
+        <Route path='/Home' exect element={<Home />}/>
       </Routes>
     </div>
   );

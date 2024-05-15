@@ -20,10 +20,7 @@ function ConnectionTable() {
     }, [])
 
     return (
-        <>
-            <button type="button" className="btn btn-secondary m-3 align-center" >
-                Add connection
-            </button>
+        <>            
             <ConnectionModal />
             <div className="table">
                 <TableContainer component={Paper}>

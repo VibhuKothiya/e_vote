@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { userLoginDataSubmit } from '../User/action/userAction';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const UserLoginForm = () => {
     const [UserloginData, setLoginData] = useState({});
@@ -24,7 +24,7 @@ const UserLoginForm = () => {
     }
 
     const adminLoginPage = () => {
-        Navigate('/Home')
+        navigate('/Home')
     }
 
     useEffect(() => {
@@ -56,7 +56,7 @@ const UserLoginForm = () => {
                 <div className="col-6 d-flex justify-content-center align-items-center">
                     <div className="form" style={{width : '350px'}}>
                         <form onSubmit={(e) => submitForm(e)} className='border rounded-4 p-3'>
-                            <h3 className='mb-4'>Login with Voter Card No.</h3>
+                            <h3 className='mb-4'>Login with Voting ID</h3>
                             
                             <label className='mb-2 d-flex justify-content-start' >Vote Card Number</label><input onChange={inputHandle } name='cardNo' placeholder='Enter Name' className='mb-2 p-1 rounded d-flex justify-content-start' type='text' style={{width: '320px'}}></input>
                             <label className='mb-2 d-flex justify-content-start'>Password:</label><input onChange={inputHandle } name='password' placeholder='Enter password' className='mb-3 p-1 rounded d-flex justify-content-start' type='password' style={{width: '320px'}}></input>

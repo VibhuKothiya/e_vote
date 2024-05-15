@@ -19,12 +19,25 @@ const CounterVote = () => {
     }, [])
 
     useEffect(() => {
-        axios.get('http://13.127.211.205:8000/v1/vote/list').then((res) => {
-            const dataArray = Object.entries(res.data.data).map(([party, count]) => {
-                return { party, count };
-            });
-            setTotalCountes(dataArray);
-        })
+        axios.get('http://13.127.211.205:8000/v1/partylist/list').then((res) => {
+            const data = res.data.data;
+            const counts = data.reduce((acc, partyItem) => {
+                const partyName = partyItem.party.party_name;
+                if (!acc[partyName]) {
+                  acc[partyName] = 0;
+                }
+                acc[partyName] += 1; // Assuming each entry in the response array represents one vote
+                return acc;
+              }, {});
+
+
+              const dataArray = Object.entries(counts).map(([partyName, count]) => ({
+                partyName,
+                count
+              }));
+
+                setTotalCountes(dataArray);
+            })
             .catch((err) => {
                 console.error('Error fetching data: ', err);
             });
@@ -41,7 +54,7 @@ const CounterVote = () => {
             </div>
             <div className="div">
                 <div className="row">
-                    {totalCountes.map(({ party, count }, ind) => (
+                    {totalCountes.map(({ partyName, count }, ind) => (
                         <div key={ind} className=" col-2" style = {{
                             boxShadow: "3px 4px 8px -3px",
                             height: "200px",
@@ -49,9 +62,9 @@ const CounterVote = () => {
                             marginLeft: "30px",
                             width: "270px"
                         }}>
-                            <h3 style={{ fontWeight: 500, margin: "10px" }}>{party}</h3>
+                            <h3 style={{ fontWeight: 500, margin: "10px" }}>{partyName}</h3>
 
-                            <h1 style={{ textAlign: 'center', marginTop: "50px" }}>{count + 333}</h1>
+                            <h1 style={{ textAlign: 'center', marginTop: "50px" }}>{count + 255}</h1>
 
                         </div>
 

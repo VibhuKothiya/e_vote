@@ -15,6 +15,7 @@ import { useSelector } from 'react-redux';
 
 const UserDetail = () => {
     const { displayUser } = useSelector((state) => state.UserList)
+    console.log(displayUser, "Details of user");
     
     const [state, setState] = React.useState({
         top: false,

@@ -1,6 +1,35 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
+import { adminLogOutAction } from '../redux-thunk/Admin/action/adminAction';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { ADMIN_LOGIN_POST_SUCCESS } from '../redux-thunk/type';
 
 const Navbar = () => {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const {isAdminLogin} = useSelector((state) => state.admin)
+
+    const adminLogOut = () => {
+        dispatch(adminLogOutAction())
+        console.log("Logout");
+    }
+
+    useEffect(() => {
+
+        let adminLoginData = JSON.parse(localStorage.getItem("adminLoginData"))
+        if (adminLoginData && adminLoginData.success) {
+            dispatch({ type: ADMIN_LOGIN_POST_SUCCESS, payload: adminLoginData })
+        }
+    }, [])
+
+    useEffect(() => {
+        if (!isAdminLogin) {
+            navigate("/")
+        }
+    }, [isAdminLogin])
+
+
     return (
         <>
             <div>
@@ -22,7 +51,10 @@ const Navbar = () => {
                         </svg>
                         </a>
                         <div className="div">
-                            <h6 className='text-white me-5'>User name</h6>
+                        <button style={{ marginLeft: "100px", borderRadius: "12px", padding: "6px 8px", color: "rgb(18, 20, 129)" }} onClick={adminLogOut}>
+                        <PowerSettingsNewIcon />
+                        <span style={{ marginLeft: "9px", marginTop: "4px" }}>LOGOUT</span>
+                    </button>
                         </div>
                     </div>
                 </nav>

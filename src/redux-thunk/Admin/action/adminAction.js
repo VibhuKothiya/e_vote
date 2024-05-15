@@ -1,7 +1,7 @@
 import axios from "axios";
-import { ADMIN_LOGIN_POST_FAIL, ADMIN_LOGIN_POST_REQUEST, ADMIN_LOGIN_POST_SUCCESS } from "../../type";
+import { ADMIN_LOGIN_POST_FAIL, ADMIN_LOGIN_POST_REQUEST, ADMIN_LOGIN_POST_SUCCESS, ADMIN_LOGOUT_POST_SUCCESS } from "../../type";
 
-
+//Admin login
 export const adminLoginDataSubmit = (AdminLoginData) => {
     return async (dispatch) => {
         dispatch({
@@ -25,6 +25,17 @@ export const adminLoginDataSubmit = (AdminLoginData) => {
                     payload: err
                 })
         }
+        
+    }
+}
+
+//Admin logout
+export const adminLogOutAction = () => {
+    return (dispatch) => {
+        localStorage.removeItem('adminLoginData')
+        dispatch({
+            type: ADMIN_LOGOUT_POST_SUCCESS
+        })
         
     }
 }

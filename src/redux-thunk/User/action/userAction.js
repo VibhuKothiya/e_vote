@@ -14,6 +14,7 @@ export const userLoginDataSubmit = (loginData) => {
             let res = await axios.post('http://13.127.211.205:8000/v1/login/user', loginData)
             console.log(res, "UserLoginData");
             localStorage.setItem("userLoginData", JSON.stringify(res.data.data.UserList))
+            console.log(res.data.data.UserList, "localstorege set user data");
             
         dispatch({
             type: USER_LOGIN_POST_SUCCESS,
